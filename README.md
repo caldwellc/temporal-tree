@@ -26,24 +26,24 @@ library for generating a tree structure for sorted temporal records
 # generate a temporal tree
 ```
     TreeGenerator<Integer> generator = new TreeGenerator<>();
-		LeafGenerator<Integer> leafGenerator = record -> {
-			ObjectNode leaf = TreeUtils.OBJECT_MAPPER.createObjectNode();
-			leaf.put("key", record + "");
-			leaf.put("title", record + "");
-			leaf.put("isLeaf", true);
-			return leaf;
-		};
-		long start = 1717027200000L;
-		DateAccessor<Integer> dateAccessor = new DateAccessor<Integer>() {
-			@Override
-			public Instant getDateTime(Integer record) {
-				return Instant.ofEpochMilli(start + record);
-			}
-		};
-		List<Integer> records = new ArrayList<>();
-		for (int i = 0; i < 60*60*24; i++) {
-			records.add(i * 1000);
-		}
-		int[] idx = new int[]{0};
-		ArrayNode indexTree = generator.generateTemporalTreeChildren(records, dateAccessor, leafGenerator, ZoneId.of("Z"), null);
+    LeafGenerator<Integer> leafGenerator = record -> {
+        ObjectNode leaf = TreeUtils.OBJECT_MAPPER.createObjectNode();
+        leaf.put("key", record + "");
+        leaf.put("title", record + "");
+        leaf.put("isLeaf", true);
+        return leaf;
+    };
+    long start = 1717027200000L;
+    DateAccessor<Integer> dateAccessor = new DateAccessor<Integer>() {
+        @Override
+        public Instant getDateTime(Integer record) {
+            return Instant.ofEpochMilli(start + record);
+        }
+    };
+    List<Integer> records = new ArrayList<>();
+    for (int i = 0; i < 60*60*24; i++) {
+        records.add(i * 1000);
+    }
+    int[] idx = new int[]{0};
+    ArrayNode indexTree = generator.generateTemporalTreeChildren(records, dateAccessor, leafGenerator, ZoneId.of("Z"), null);
 ```
