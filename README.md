@@ -3,7 +3,7 @@ library for generating a tree structure for sorted temporal records
 
 
 # generate an index tree
-```
+```java
     TreeGenerator<String> generator = new TreeGenerator<>();
     LeafGenerator<String> leafGenerator = new LeafGenerator<String>() {
         @Override
@@ -24,7 +24,7 @@ library for generating a tree structure for sorted temporal records
 
 
 # generate a temporal tree
-```
+```java
     TreeGenerator<Integer> generator = new TreeGenerator<>();
     LeafGenerator<Integer> leafGenerator = record -> {
         ObjectNode leaf = TreeUtils.OBJECT_MAPPER.createObjectNode();
